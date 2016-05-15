@@ -1,0 +1,49 @@
+﻿<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+        <select class="form-control" ng-model="state" value="State" size="10" style="width:250px;margin-left:15px;" ng-options="i.Name for i in states" ng-change="getCities()"></select>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="stationCode" class="control-label">Station Code</label>
+                <p id="stationCode" class="form-control-static" style="width:250px;background-color:#B0B6B7;padding-left:10px" ng-model="stationCode">{{stationCode}}</p>
+
+                <label for="predictedSpeed"  style="width:250px;" class="control-label">Predicted Speed (km/h)</label>
+                <p id="predictedSpeed"  class="form-control-static" style="width:250px;background-color:#B0B6B7;padding-left:10px">{{state.predictedSpeed}}</p>
+
+                <label for="variance" class="control-label">Variance</label>
+                <input type="number" required id="phone" class="form-control" style="width:250px;" ng-style="{color:varianceColor}" ng-model="variance" />
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-3">
+        <select class="form-control" ng-model="selectedCity" size="10" ng-options="i.city for i in cities" style="width:250px;margin-left:15px;"></select>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="name" class="control-label">Date</label>
+                <input type="date" style="width:250px;" id="name" class="form-control" ng-model="date" ng-change="onDateChanged(date)">
+                <label for="actualSpeed" class="control-label">Actual Speed (km/h)</label>
+                <input type="number" step="1" ng-required="required" style="width:250px;" id="actualSpeed" class="form-control" ng-model="actualSpeed" ng-keyup="isValid()">
+
+                <p for="" class="control-label"></p>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="submit" ng-disabled="buttonDisabled" style="width:65px;" class="btn btn-primary" value="Save" ng-click="save()">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="submit" style="width:65px;" class="btn btn-primary" value="Cancel" ng-click="cancel()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="#history">History</a>
+            </div>
+        </div>
+        
+</div>
+</div>

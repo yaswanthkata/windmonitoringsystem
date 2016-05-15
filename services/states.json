@@ -1,0 +1,220 @@
+{
+  "Data": [
+    {
+      "ID": "36",
+      "Name": "Andaman and Nicobar Islands",
+      "Type": "Union Territory",
+      "predictedSpeed": 12
+    },
+    {
+      "ID": "6",
+      "Name": "Andhra Pradesh",
+      "Type": "state",
+      "predictedSpeed": 13
+    },
+    {
+      "ID": "17",
+      "Name": "Arunachal Pradesh",
+      "Type": "state",
+      "predictedSpeed": 14
+    },
+    {
+      "ID": "1",
+      "Name": "Assam ",
+      "Type": "state",
+      "predictedSpeed": 15
+    },
+    {
+      "ID": "18",
+      "Name": "Bihar",
+      "Type": "state",
+      "predictedSpeed": 16
+    },
+    {
+      "ID": "28",
+      "Name": "Chandigarh",
+      "Type": "Union Territory",
+      "predictedSpeed": 12
+    },
+    {
+      "ID": "11",
+      "Name": "Chhattisgarh",
+      "Type": "state",
+      "predictedSpeed": 17
+    },
+    {
+      "ID": "21",
+      "Name": "Dadra and Nagar Haveli",
+      "Type": "National Capital Territory",
+      "predictedSpeed": 18
+    },
+    {
+      "ID": "29",
+      "Name": "Daman and Diu",
+      "Type": "Union Territory",
+      "predictedSpeed": 19
+    },
+    {
+      "ID": "27",
+      "Name": "Delhi",
+      "Type": "Union Territory",
+      "predictedSpeed": 21
+    },
+    {
+      "ID": "15",
+      "Name": "Goa",
+      "Type": "state",
+      "predictedSpeed": 22
+    },
+    {
+      "ID": "5",
+      "Name": "Gujarat",
+      "Type": "state",
+      "predictedSpeed": 23
+    },
+    {
+      "ID": "25",
+      "Name": "Haryana",
+      "Type": "state",
+      "predictedSpeed": 22
+    },
+    {
+      "ID": "24",
+      "Name": "Himachal Pradesh",
+      "Type": "state",
+      "predictedSpeed": 13
+    },
+    {
+      "ID": "2",
+      "Name": "Jammu and Kashmir",
+      "Type": "state",
+      "predictedSpeed": 14
+    },
+    {
+      "ID": "20",
+      "Name": "Jharkhand",
+      "Type": "state",
+      "predictedSpeed": 15
+    },
+    {
+      "ID": "7",
+      "Name": "Karnataka",
+      "Type": "state",
+      "predictedSpeed": 17
+    },
+    {
+      "ID": "8",
+      "Name": "Kerala",
+      "Type": "state",
+      "predictedSpeed": 16
+    },
+    {
+      "ID": "19",
+      "Name": "Lakshadweep",
+      "Type": "Union Territory",
+      "predictedSpeed": 18
+    },
+    {
+      "ID": "26",
+      "Name": "Madhya Pradesh",
+      "Type": "state",
+      "predictedSpeed": 19
+    },
+    {
+      "ID": "3",
+      "Name": "Maharashtra",
+      "Type": "state",
+      "predictedSpeed": 21
+    },
+    {
+      "ID": "32",
+      "Name": "Manipur",
+      "Type": "state",
+      "predictedSpeed": 15
+    },
+    {
+      "ID": "33",
+      "Name": "Meghalaya",
+      "Type": "state",
+      "predictedSpeed": 16
+    },
+    {
+      "ID": "13",
+      "Name": "Mizoram",
+      "Type": "state",
+      "predictedSpeed": 17
+    },
+    {
+      "ID": "30",
+      "Name": "Nagaland",
+      "Type": "state",
+      "predictedSpeed": 18
+    },
+    {
+      "ID": "22",
+      "Name": "Orissa",
+      "Type": "state",
+      "predictedSpeed": 19
+    },
+    {
+      "ID": "34",
+      "Name": "Pondicherry",
+      "Type": "Union Territory",
+      "predictedSpeed": 20
+    },
+    {
+      "ID": "12",
+      "Name": "Punjab",
+      "Type": "state",
+      "predictedSpeed": 21
+    },
+    {
+      "ID": "14",
+      "Name": "Rajasthan",
+      "Type": "state",
+      "predictedSpeed": 19
+    },
+    {
+      "ID": "31",
+      "Name": "Sikkim",
+      "Type": "state",
+      "predictedSpeed": 17
+    },
+    {
+      "ID": "23",
+      "Name": "Tamil Nadu",
+      "Type": "state",
+      "predictedSpeed": 13
+    },
+    {
+      "ID": "37",
+      "Name": "Telangana",
+      "Type": "state",
+      "predictedSpeed": 12
+    },
+    {
+      "ID": "10",
+      "Name": "Tripura",
+      "Type": "state",
+      "predictedSpeed": 10
+    },
+    {
+      "ID": "4",
+      "Name": "Uttar Pradesh",
+      "Type": "state",
+      "predictedSpeed": 9
+    },
+    {
+      "ID": "16",
+      "Name": "Uttarakhand",
+      "Type": "state",
+      "predictedSpeed": 12
+    },
+    {
+      "ID": "9",
+      "Name": "West Bengal",
+      "Type": "state",
+      "predictedSpeed": 11
+    }
+  ]
+}

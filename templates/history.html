@@ -1,0 +1,33 @@
+﻿<div class="post" >
+  <h4>History for the Last 10 Days</h4>
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th>City</th>
+              <th>State</th>
+              <th>StationCode</th>
+              <th>Date</th>
+              <th>PredictedSpeed</th>
+              <th>ActualSpeed</th>
+              <th>Variance</th>
+          </tr>
+      </thead>
+      <tr ng-repeat="report in pagedReports" ng-class-odd="odd" ng-class-even="even">
+          <td>{{report.city}}</td>
+          <td>{{report.name}}</td>
+          <td>{{report.stationCode}}</td>
+          <td>{{report.date}}</td>
+          <td>{{report.predictedSpeed}}</td>
+          <td>{{report.actualSpeed}}</td>
+          <td>{{report.variance}}</td>
+      </tr>
+  </table>
+    <pagination boundary-links="true"
+                max-size="3"
+                items-per-page="itemsPerPage"
+                total-items="historyReports.length"
+                ng-model="currentPage"
+                ng-change="pageChanged()">
+
+    </pagination>
+</div>
