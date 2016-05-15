@@ -1,5 +1,5 @@
-﻿app.controller('HomeController', ['$scope', 'stateFactory', '$firebaseArray', '$firebaseObject', 'firebaseFactory','Notification',
-function ($scope, stateFactory, $firebaseArray, $firebaseObject, firebaseFactory, Notification) {
+﻿app.controller('HomeController', ['$scope', 'stateFactory', '$firebaseObject','Notification',
+function ($scope, stateFactory, $firebaseObject, Notification) {
 
     var windReport = {};
     var reports = [];
@@ -14,16 +14,21 @@ function ($scope, stateFactory, $firebaseArray, $firebaseObject, firebaseFactory
                 $scope.cities = stateFactory.getCities($scope.state.ID).then(function (response) {
                     $scope.cities = response.data.Data;
                     $scope.selectedCity = $scope.cities[0];
-                    $scope.stationCode = $scope.state.Name.substr(0, 3) + "-" + $scope.selectedCity.city.substr(0, 3);
+                    $scope.stationCode = getStationCode($scope.state, $scope.selectedCity);
                 }, function (error) {
-                    $scope.status = 'Unable to load customer data: ' + error.message;
+                    console.log('Unable to load customer data: ' + error.message);
                 });
             }, function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                console.log('Unable to load customer data: ' + error.message);
             });
     }
     $scope.onDateChanged = function (date) {
         $scope.date = date;
+    }
+
+    function getStationCode(state, city) {
+
+       return state.Name.substr(0, 3) + "-" + city.city.substr(0, 3);
     }
 
     $scope.isValid = function () {
@@ -51,9 +56,9 @@ function ($scope, stateFactory, $firebaseArray, $firebaseObject, firebaseFactory
         stateFactory.getCities(id).then(function (response) {
             $scope.cities = response.data.Data;
             $scope.selectedCity = $scope.cities[0];
-            $scope.stationCode = $scope.state.Name.substr(0, 3) + "-" + $scope.selectedCity.city.substr(0, 3);
+            $scope.stationCode = getStationCode($scope.state, $scope.selectedCity);
         }, function (error) {
-            $scope.status = 'Unable to load customer data: ' + error.message;
+            console.log('Unable to load customer data: ' + error.message);
         });
     }
     $scope.date = new Date();

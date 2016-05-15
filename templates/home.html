@@ -23,7 +23,7 @@
                 <label for="name" class="control-label">Date</label>
                 <input type="date" style="width:250px;" id="name" class="form-control" ng-model="date" ng-change="onDateChanged(date)">
                 <label for="actualSpeed" class="control-label">Actual Speed (km/h)</label>
-                <input type="number" step="1" ng-required="required" style="width:250px;" id="actualSpeed" class="form-control" ng-model="actualSpeed" ng-keyup="isValid()">
+                <input type="number" step="1" ng-required="required" style="width:250px;" id="actualSpeed" class="form-control" ng-model="actualSpeed" ng-keyup="isValid()" ng-change="isValid()">
 
                 <p for="" class="control-label"></p>
 

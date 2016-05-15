@@ -22,19 +22,16 @@
           });
           $scope.historyReports = filteredReports;
 
-          $scope.figureOutReportsToDisplay();
-          console.log(resultProductData);
+         figureOutReportsToDisplay();
       })
       .catch(function (err) {
           console.error(err);
       });
     $scope.pageChanged = function () {
-        var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-        var end = begin + $scope.itemsPerPage;
-        $scope.pagedReports = $scope.historyReports.slice(begin, end);
+        figureOutReportsToDisplay();
     };
 
-    $scope.figureOutReportsToDisplay = function () {
+    function figureOutReportsToDisplay() {
         var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
         var end = begin + $scope.itemsPerPage;
         $scope.pagedReports = $scope.historyReports.slice(begin, end);
