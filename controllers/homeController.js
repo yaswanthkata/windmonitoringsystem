@@ -62,6 +62,10 @@ function ($scope, stateFactory, $firebaseObject, Notification) {
         });
     }
     $scope.date = new Date();
+    $scope.cityChanged = function (city) {
+        $scope.selectedCity = city;
+            $scope.stationCode = getStationCode($scope.state, $scope.selectedCity);
+    }
 
     $scope.save = function () {
         var ref = new Firebase("https://windreporting.firebaseio.com");
