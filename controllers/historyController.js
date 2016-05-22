@@ -1,37 +1,42 @@
-﻿app.controller('historyController', ['$scope', '$firebaseArray', function ($scope, $firebaseArray) {
-    var ref = new Firebase("https://windreporting.firebaseio.com/reports");
-    $scope.reports = $firebaseArray(ref);
+﻿app.controller('historyController', ['$scope', 'stateFactory', function ($scope, stateFactory) {
+    $scope.reports = [];
     // this waits for the data to load and then logs the output. Therefore,
     // data from the server will now appear in the logged output. Use this with care!
-    $scope.reports.$loaded()
-      .then(function (data) {
-          var endDate = new Date();
-          var startDate = new Date(endDate);
-          startDate.setDate(startDate.getDate() - 10);
 
-          $scope.startDate = startDate;
-          $scope.endDate = endDate;
-          $scope.pagedReports = [];
-          $scope.itemsPerPage = 10;
-          $scope.currentPage = 1;
-          var filteredReports = [];
-          var resultProductData = $scope.reports.filter(function (a) {
-              var date = new Date(a.date);
-              if (date >= startDate && date <= endDate)
-                  filteredReports.push(a);
+    function getReports() {
+        stateFactory.getReports().then(function (response) {
+            var endDate = new Date();
+            var startDate = new Date(endDate);
+            startDate.setDate(startDate.getDate() - 10);
+            $scope.reports = response.data;
+            $scope.startDate = startDate;
+            $scope.endDate = endDate;
+            $scope.pagedReports = [];
+            $scope.itemsPerPage = 10;
+            $scope.currentPage = 1;
+            var filteredReports = [];
+            var resultProductData = $scope.reports.filter(function (a) {
+                var date = new Date(a.date);
+                if (date >= startDate && date <= endDate)
+                    filteredReports.push(a);
+            });
+            $scope.historyReports = filteredReports;
+
+            $scope.figureOutReportsToDisplay();
+            console.log(resultProductData);
+        })
+          .catch(function (err) {
+              console.error(err);
           });
-          $scope.historyReports = filteredReports;
-
-         figureOutReportsToDisplay();
-      })
-      .catch(function (err) {
-          console.error(err);
-      });
+    }
+    getReports();
     $scope.pageChanged = function () {
-        figureOutReportsToDisplay();
+        var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+        var end = begin + $scope.itemsPerPage;
+        $scope.pagedReports = $scope.historyReports.slice(begin, end);
     };
 
-    function figureOutReportsToDisplay() {
+    $scope.figureOutReportsToDisplay = function () {
         var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
         var end = begin + $scope.itemsPerPage;
         $scope.pagedReports = $scope.historyReports.slice(begin, end);

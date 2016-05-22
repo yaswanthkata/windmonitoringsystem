@@ -1,7 +1,7 @@
 ﻿var app = angular.module("app", ['ngRoute', 'firebase', 'ui.bootstrap', 'ui-notification'])
 
     .config(function ($routeProvider) {
-        $routeProvider.when('/home', {
+        $routeProvider.when('/', {
             controller: 'HomeController',
             templateUrl: '/templates/home.html'
         })

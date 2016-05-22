@@ -1,5 +1,5 @@
-﻿app.controller('HomeController', ['$scope', 'stateFactory', '$firebaseObject','Notification',
-function ($scope, stateFactory, $firebaseObject, Notification) {
+﻿app.controller('HomeController', ['$scope', 'stateFactory', 'Notification',
+function ($scope, stateFactory, Notification) {
 
     var windReport = {};
     var reports = [];
@@ -9,17 +9,20 @@ function ($scope, stateFactory, $firebaseObject, Notification) {
     function getStates() {
         stateFactory.getStates()
             .then(function (response) {
-                $scope.states = response.data.Data;
+                $scope.states = response.data;
+                for (var i = 0; i < $scope.states.length - 1; i++) {
+                    $scope.states[i].predictedSpeed = Math.floor((Math.random() * 10) + 10);
+                }
                 $scope.state = $scope.states[0];
                 $scope.cities = stateFactory.getCities($scope.state.ID).then(function (response) {
-                    $scope.cities = response.data.Data;
+                    $scope.cities = response.data;
                     $scope.selectedCity = $scope.cities[0];
-                    $scope.stationCode = getStationCode($scope.state, $scope.selectedCity);
+                    $scope.stationCode = $scope.state.Name.substr(0, 3) + "-" + $scope.selectedCity.city.substr(0, 3);
                 }, function (error) {
-                    console.log('Unable to load customer data: ' + error.message);
+                    $scope.status = 'Unable to load customer data: ' + error.message;
                 });
             }, function (error) {
-                console.log('Unable to load customer data: ' + error.message);
+                $scope.status = 'Unable to load customer data: ' + error.message;
             });
     }
     $scope.onDateChanged = function (date) {
@@ -28,7 +31,7 @@ function ($scope, stateFactory, $firebaseObject, Notification) {
 
     function getStationCode(state, city) {
 
-       return state.Name.substr(0, 3) + "-" + city.city.substr(0, 3);
+        return state.Name.substr(0, 3) + "-" + city.city.substr(0, 3);
     }
 
     $scope.isValid = function () {
@@ -54,39 +57,34 @@ function ($scope, stateFactory, $firebaseObject, Notification) {
         else
             id = 1;
         stateFactory.getCities(id).then(function (response) {
-            $scope.cities = response.data.Data;
+            $scope.cities = response.data;
             $scope.selectedCity = $scope.cities[0];
-            $scope.stationCode = getStationCode($scope.state, $scope.selectedCity);
+            $scope.stationCode = $scope.state.Name.substr(0, 3) + "-" + $scope.selectedCity.city.substr(0, 3);
         }, function (error) {
-            console.log('Unable to load customer data: ' + error.message);
+            $scope.status = 'Unable to load customer data: ' + error.message;
         });
     }
     $scope.date = new Date();
     $scope.cityChanged = function (city) {
         $scope.selectedCity = city;
-            $scope.stationCode = getStationCode($scope.state, $scope.selectedCity);
+        $scope.stationCode = getStationCode($scope.state, $scope.selectedCity);
     }
 
     $scope.save = function () {
-        var ref = new Firebase("https://windreporting.firebaseio.com");
-        var firebaseRef = ref.child("reports")
-        var name = $scope.state.Name;
-        var city = $scope.selectedCity.city;
-        var date = $scope.date.toDateString();
-        var predictedSpeed = $scope.state.predictedSpeed;
-        var stationCode = $scope.stationCode;
-        var variance = $scope.variance;
-        var actualSpeed = $scope.actualSpeed;
-        firebaseRef.push().set({
-            name: name,
-            city: city,
-            date: date,
-            predictedSpeed: predictedSpeed,
-            stationCode: stationCode,
-            variance: variance,
-            actualSpeed: actualSpeed
-        });
-        Notification.success({ message: 'Report added Successfully', delay: 5000 });
+        var windReport = {};
+        windReport.name = $scope.state.Name;
+        windReport.city = $scope.selectedCity.city;
+        windReport.date = $scope.date.toDateString();
+        windReport.predictedSpeed = $scope.state.predictedSpeed;
+        windReport.stationCode = $scope.stationCode;
+        windReport.variance = $scope.variance;
+        windReport.actualSpeed = $scope.actualSpeed;
+        stateFactory.postReport(windReport).then(
+        function (response) {
+            if (response.status == 200)
+                Notification.success({ message: 'Report added Successfully', delay: 5000 });
+        }
+            );
         $scope.cancel();
     }
     $scope.cancel = function () {
